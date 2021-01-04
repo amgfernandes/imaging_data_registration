@@ -16,9 +16,9 @@ if not os.path.isdir( outputDirectory ):
 outputPrefix = outputDirectory + 'antsr'
 
 # %%
-ref = ants.image_read('huclyntrfpt.nii.gz', dimension=3)
-align= ants.image_read('average_reference-01.nii.gz',dimension=3)
-mask= ants.image_read('huclyntrfpt_mask.nii.gz', dimension=3)
+ref = ants.image_read('huclyntrfpt.nii.gz', dimension=3) #reference brain
+align= ants.image_read('average_reference-01.nii.gz',dimension=3) #brain to align
+mask= ants.image_read('huclyntrfpt_mask.nii.gz', dimension=3) #if using mask for only partial alignment
 #
 # %%
 registrationWithMask = ants.registration(
