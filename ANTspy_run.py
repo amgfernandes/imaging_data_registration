@@ -9,16 +9,16 @@ print ('starting ANTspy')
 start_time = time.time()
 
 # %%
-outputDirectory = './OutputWithMaskANTsPy/'
+outputDirectory = '/home/fernandes/scripts/Python/ANTspy/OutputWithMaskANTsPy/'
 if not os.path.isdir( outputDirectory ):
   os.mkdir( outputDirectory )
 
 outputPrefix = outputDirectory + 'antsr'
 
 # %%
-ref = ants.image_read('huclyntrfpt.nii.gz', dimension=3) #reference brain
-align= ants.image_read('average_reference-01.nii.gz',dimension=3) #brain to align
-mask= ants.image_read('huclyntrfpt_mask.nii.gz', dimension=3) #if using mask for only partial alignment
+ref = ants.image_read('/home/fernandes/scripts/Python/ANTspy/huclyntrfpt.nii.gz', dimension=3) #reference brain
+align= ants.image_read('/home/fernandes/scripts/Python/ANTspy/average_reference-01.nii.gz',dimension=3) #brain to align
+mask= ants.image_read('/home/fernandes/scripts/Python/ANTspy/huclyntrfpt_mask.nii.gz', dimension=3) #if using mask for only partial alignment
 #
 # %%
 registrationWithMask = ants.registration(
