@@ -107,3 +107,10 @@ for idx, r in enumerate(results):
            title='After Registration', axis=2, cmap = 'Greys',
     overlay_cmap = 'Blues')
 
+# %% [markdown]
+# Conclusions
+# - For one of the brains this registration is not great. 
+# - Need to optimize. Maybe first just rotate first and then additional transformations
+# - It it important to be consistent during data collection
+
+# %%
