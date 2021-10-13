@@ -73,11 +73,32 @@ warped_moving = mytx['warpedmovout']
 reg_img.plot(overlay=warped_moving,
            title='After Registration', axis=2, cmap = 'Greys',
 overlay_cmap = 'Blues')
+
+# %%
+print(ants.image_mutual_information (reg_img, warped_moving))
 # %%
 reg_img.plot(axis=2)
 mytx['warpedmovout'].plot(axis=2)
 
 
+# %% 
+
+'''Try first Affine transformation before other'''
+
+first = ants.registration(fixed=reg_img, moving=img1, type_of_transform='SyN',  initial_transform='Affine')
+print(first)
+
+# %%
+
+first_moving = first ['warpedmovout']
+reg_img.plot(overlay=first_moving,
+           title='After Affine first combined with other', axis=2, cmap = 'Greys',
+overlay_cmap = 'Blues')
+
+print(ants.image_mutual_information (reg_img, first_moving))
+
+
+# %
 # %%
 '''perform registration for all files at once'''
 
@@ -85,7 +106,7 @@ images_to_register = images
 results= []
 
 for image in images_to_register:
-     transf = ants.registration(fixed=reg_img, moving=image , type_of_transform='SyN')
+     transf = ants.registration(fixed=reg_img, moving=image , type_of_transform='SyN', initial_transform='Affine')
      results.append(transf)
 
 print (results)
@@ -107,10 +128,16 @@ for idx, r in enumerate(results):
            title='After Registration', axis=2, cmap = 'Greys',
     overlay_cmap = 'Blues')
 
+# %%
+
+for idx, s in enumerate(results):
+    results_moving = s['warpedmovout']
+    print(f'Mutual information for image {idx} : {ants.image_mutual_information (reg_img, results_moving)}')
+
 # %% [markdown]
 # Conclusions
 # - For one of the brains this registration is not great. 
-# - Need to optimize. Maybe first just rotate and then additional transformations
+# - Needed to optimize. First just affine and then additional transformations
 # - It it important to be consistent during data collection
 
 # %%
