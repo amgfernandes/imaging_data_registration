@@ -110,7 +110,7 @@ for idx, r in enumerate(results):
 # %% [markdown]
 # Conclusions
 # - For one of the brains this registration is not great. 
-# - Need to optimize. Maybe first just rotate first and then additional transformations
+# - Need to optimize. Maybe first just rotate and then additional transformations
 # - It it important to be consistent during data collection
 
 # %%
